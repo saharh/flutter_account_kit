@@ -2,4 +2,6 @@
     <string name="app_name">Example</string>
     <string name="FACEBOOK_APP_ID">[FACEBOOK_APP_ID]</string>
     <string name="ACCOUNT_KIT_CLIENT_TOKEN">[ACCOUNT_KIT_CLIENT_TOKEN]</string>
+    <string name="start_trial_please_signup_first">In order to get this number, please signup first.</string>
+    <string name="please_enter_your_phone_number">Please enter your phone number. You will receive a SMS verification code.</string>
 </resources>

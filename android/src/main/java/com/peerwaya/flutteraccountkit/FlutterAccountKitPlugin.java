@@ -123,6 +123,11 @@ public class FlutterAccountKitPlugin implements MethodCallHandler {
             final Intent intent = new Intent(this.registrar.context(), AccountKitActivity.class);
             final AccountKitConfiguration.AccountKitConfigurationBuilder configurationBuilder =
                     createAccountKitConfiguration(loginType);
+            Boolean showTrialNeedRegistration = (Boolean) this.options.get("showTrialNeedRegistrationNote");
+            if (showTrialNeedRegistration != null) {
+                AccountKitUIManager accountKitUIManager = new AccountKitUIManager(showTrialNeedRegistration);
+                configurationBuilder.setUIManager(accountKitUIManager);
+            }
             intent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION, configurationBuilder.build());
             this.registrar.activity().startActivityForResult(intent, APP_REQUEST_CODE, new Bundle());
         }
