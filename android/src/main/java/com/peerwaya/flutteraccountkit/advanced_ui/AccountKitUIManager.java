@@ -34,7 +34,8 @@ public class AccountKitUIManager extends BaseUIManager {
 
     public AccountKitUIManager(boolean showTrialNeedRegistration) {
 //        super(R.style.MyAppLoginTheme);
-        super(R.style.LoginTheme);
+//        super(R.style.LoginTheme);
+        super(R.style.AppLoginTheme);
         this.showTrialNeedRegistration = showTrialNeedRegistration;
     }
 

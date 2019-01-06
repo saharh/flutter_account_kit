@@ -1,0 +1,4 @@
+<resources>
+    <string name="start_trial_please_signup_first">In order to get this number, please signup first.</string>
+    <string name="please_enter_your_phone_number">Please enter your phone number. You will receive a SMS verification code.</string>
+</resources>
