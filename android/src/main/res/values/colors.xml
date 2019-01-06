@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#479e53</color>
+    <color name="colorPrimaryDisabled">#88315836</color>
+    <color name="grey_dark">#4d4d4d</color>
+    <color name="global_bg">#EEEEEE</color>
+    <color name="white">#ffffff</color>
+</resources>

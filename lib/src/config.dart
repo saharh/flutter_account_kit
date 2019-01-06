@@ -62,11 +62,12 @@ class Config {
     this.receiveSMS,
     ResponseType responseType = ResponseType.token,
     TitleType titleType = TitleType.login,
+    this.showTrialNeedRegistrationNote,
   })
       : this._responseType = responseType,
         this._titleType = titleType;
 
-  bool _showTrialNeedRegistrationNote;
+  bool showTrialNeedRegistrationNote;
 
   /// The response type that determines whether to use access token or authorization code login flow
   /// based on the setting in the Facebook developer portal
@@ -136,14 +137,6 @@ class Config {
   /// Set the default country code shown in the SMS login flow.
   String _defaultCountry;
 
-  set setShowTrialNeedRegistrationNote(bool show) {
-    _showTrialNeedRegistrationNote = show;
-  }
-
-  bool get showTrialNeedRegistrationNote {
-    return _showTrialNeedRegistrationNote;
-  }
-
   set titleType(TitleType titleType) {
     assert(titleType != null, 'The titleType cannot be null.');
     _titleType = titleType;
@@ -195,7 +188,7 @@ class Config {
   /// storing it locally
   Map<String, dynamic> toMap() {
     Map<String, dynamic> map = <String, dynamic>{
-      'showTrialNeedRegistrationNote': _showTrialNeedRegistrationNote,
+      'showTrialNeedRegistrationNote': showTrialNeedRegistrationNote,
       'initialAuthState': initialAuthState,
       'facebookNotificationsEnabled': facebookNotificationsEnabled,
       'readPhoneStateEnabled': readPhoneStateEnabled,
