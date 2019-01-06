@@ -14,12 +14,12 @@ void assertValidityOfCountryCodes(List<String> countryCodes, String fieldName) {
     final label = '"$fieldName": Invalid value found.';
 
     assert(
-        countryCode == countryCode.toUpperCase(),
-        '$label Value should be in uppercase (${countryCode
+    countryCode == countryCode.toUpperCase(),
+    '$label Value should be in uppercase (${countryCode
         .toUpperCase()}), "$countryCode" found.');
 
     assert(supported_countries.contains(countryCode),
-        '$label Country code "$countryCode" in "$fieldName" is not supported');
+    '$label Country code "$countryCode" in "$fieldName" is not supported');
   });
 }
 
@@ -62,7 +62,8 @@ class Config {
     this.receiveSMS,
     ResponseType responseType = ResponseType.token,
     TitleType titleType = TitleType.login,
-  })  : this._responseType = responseType,
+  })
+      : this._responseType = responseType,
         this._titleType = titleType;
 
   bool _showTrialNeedRegistrationNote;
@@ -139,9 +140,9 @@ class Config {
     _showTrialNeedRegistrationNote = show;
   }
 
-  bool getShowTrialNeedRegistrationNote {
+  bool get showTrialNeedRegistrationNote {
     return _showTrialNeedRegistrationNote;
-}
+  }
 
   set titleType(TitleType titleType) {
     assert(titleType != null, 'The titleType cannot be null.');
@@ -194,7 +195,7 @@ class Config {
   /// storing it locally
   Map<String, dynamic> toMap() {
     Map<String, dynamic> map = <String, dynamic>{
-      'showTrialNeedRegistrationNote' : _showTrialNeedRegistrationNote,
+      'showTrialNeedRegistrationNote': _showTrialNeedRegistrationNote,
       'initialAuthState': initialAuthState,
       'facebookNotificationsEnabled': facebookNotificationsEnabled,
       'readPhoneStateEnabled': readPhoneStateEnabled,
