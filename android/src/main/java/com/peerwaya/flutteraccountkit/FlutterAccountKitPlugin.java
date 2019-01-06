@@ -7,16 +7,6 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import io.flutter.plugin.common.MethodCall;
-import io.flutter.plugin.common.MethodChannel;
-import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
-import io.flutter.plugin.common.MethodChannel.Result;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
-
 import com.facebook.accountkit.AccessToken;
 import com.facebook.accountkit.Account;
 import com.facebook.accountkit.AccountKit;
@@ -26,6 +16,17 @@ import com.facebook.accountkit.PhoneNumber;
 import com.facebook.accountkit.ui.AccountKitActivity;
 import com.facebook.accountkit.ui.AccountKitConfiguration;
 import com.facebook.accountkit.ui.LoginType;
+import com.peerwaya.flutteraccountkit.advanced_ui.AccountKitUIManager;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import io.flutter.plugin.common.MethodCall;
+import io.flutter.plugin.common.MethodChannel;
+import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
+import io.flutter.plugin.common.MethodChannel.Result;
+import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 /**
  * FlutterAccountKitPlugin

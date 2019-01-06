@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_marginStart="?attr/com_accountkit_content_margin_start"
+              android:layout_marginLeft="?attr/com_accountkit_content_margin_start"
+              android:layout_marginEnd="?attr/com_accountkit_content_margin_end"
+              android:layout_marginRight="?attr/com_accountkit_content_margin_end"
+              android:orientation="vertical"
+              android:paddingTop="30dp"
+              android:paddingBottom="30dp">
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        tools:text="@string/start_trial_please_signup_first"/>
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="16sp"
+        tools:text="@string/please_enter_your_phone_number"/>
+</LinearLayout>

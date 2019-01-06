@@ -18,17 +18,16 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.applaudsoft.wabi.virtual_number.views.misc;
+package com.peerwaya.flutteraccountkit.advanced_ui;
 
 import android.app.Fragment;
 import android.os.Parcel;
-import androidx.annotation.Nullable;
 
-import com.applaudsoft.wabi.virtual_number.R;
 import com.facebook.accountkit.ui.BaseUIManager;
 import com.facebook.accountkit.ui.ButtonType;
 import com.facebook.accountkit.ui.LoginFlowState;
 import com.facebook.accountkit.ui.TextPosition;
+import com.peerwaya.flutteraccountkit.R;
 
 public class AccountKitUIManager extends BaseUIManager {
     private boolean showTrialNeedRegistration;
@@ -45,7 +44,6 @@ public class AccountKitUIManager extends BaseUIManager {
     }
 
     @Override
-    @Nullable
     public Fragment getHeaderFragment(final LoginFlowState state) {
         switch (state) {
             case PHONE_NUMBER_INPUT:
@@ -56,13 +54,11 @@ public class AccountKitUIManager extends BaseUIManager {
     }
 
     @Override
-    @Nullable
     public Fragment getBodyFragment(final LoginFlowState state) {
         return null;
     }
 
     @Override
-    @Nullable
     public ButtonType getButtonType(final LoginFlowState state) {
         switch (state) {
             case PHONE_NUMBER_INPUT:
@@ -81,14 +77,12 @@ public class AccountKitUIManager extends BaseUIManager {
     }
 
     @Override
-    @Nullable
     public Fragment getFooterFragment(final LoginFlowState state) {
         return null;
     }
 
 
     @Override
-    @Nullable
     public TextPosition getTextPosition(final LoginFlowState state) {
         return TextPosition.ABOVE_BODY;
     }

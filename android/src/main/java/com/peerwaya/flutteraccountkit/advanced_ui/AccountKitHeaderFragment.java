@@ -1,26 +1,20 @@
-package com.applaudsoft.wabi.virtual_number.views.misc;
+package com.peerwaya.flutteraccountkit.advanced_ui;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.applaudsoft.wabi.virtual_number.R;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import com.peerwaya.flutteraccountkit.R;
 
 public class AccountKitHeaderFragment extends Fragment {
 
     private static final String SHOW_TRIAL_REQUIRES_SIGNUP = "SHOW_TRIAL_REQUIRES_SIGNUP";
 
-    @BindView(R.id.text1)
     TextView text1;
-
-    @BindView(R.id.text2)
     TextView text2;
 
     public static AccountKitHeaderFragment newInstance(boolean showTrialNeedRegistration) {
@@ -35,14 +29,14 @@ public class AccountKitHeaderFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_ak_header, container, false);
-        ButterKnife.bind(this, rootView);
         return rootView;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        text1 = view.findViewById(R.id.text1);
+        text2 = view.findViewById(R.id.text2);
         boolean showTrial = getArguments().getBoolean(SHOW_TRIAL_REQUIRES_SIGNUP);
 
         if (showTrial) {
