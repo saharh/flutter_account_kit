@@ -27,17 +27,28 @@ class _MyAppState extends State<MyApp> {
     bool initialized = false;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      final theme = AccountKitTheme(
-          headerBackgroundColor: Colors.green,
-          buttonBackgroundColor: Colors.yellow,
-          buttonBorderColor: Colors.yellow,
-          buttonTextColor: Colors.black87);
-      await akt.configure(Config()
-        ..facebookNotificationsEnabled = true
-        ..receiveSMS = true
-        ..readPhoneStateEnabled = true
-        ..theme = theme
-        );
+//      accountKit = new FlutterAccountKit();
+      Config config = Config(
+          receiveSMS: true,
+          readPhoneStateEnabled: true,
+          facebookNotificationsEnabled: true,
+          responseType: ResponseType.token,
+          titleType: TitleType.login,
+          showTrialNeedRegistrationNote: true
+      );
+//    config.showTrialNeedRegistrationNote = true;
+      akt.configure(config);
+//      final theme = AccountKitTheme(
+//          headerBackgroundColor: Colors.green,
+//          buttonBackgroundColor: Colors.yellow,
+//          buttonBorderColor: Colors.yellow,
+//          buttonTextColor: Colors.black87);
+//      await akt.configure(Config()
+//        ..facebookNotificationsEnabled = true
+//        ..receiveSMS = true
+//        ..readPhoneStateEnabled = true
+//        ..theme = theme
+//        );
       initialized = true;
     } on PlatformException {
       print('Failed to initialize account kit');

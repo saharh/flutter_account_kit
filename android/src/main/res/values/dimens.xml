@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="com_accountkit_button_text_size">16sp</dimen>
+    <dimen name="com_accountkit_country_code_text_size">16sp</dimen>
+    <dimen name="com_accountkit_text_size">16sp</dimen>
+    <dimen name="com_accountkit_title_text_size">16sp</dimen>
+    <dimen name="com_accountkit_input_corner_radius">6dp</dimen>
+    <!--<dimen name="com_accountkit_input_spacing">60dp</dimen>-->
+    <dimen name="com_accountkit_input_text_size">30sp</dimen>
+</resources>
