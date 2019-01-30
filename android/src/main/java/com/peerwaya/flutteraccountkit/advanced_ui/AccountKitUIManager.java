@@ -30,25 +30,32 @@ import com.facebook.accountkit.ui.TextPosition;
 import com.peerwaya.flutteraccountkit.R;
 
 public class AccountKitUIManager extends BaseUIManager {
-    private boolean showTrialNeedRegistration;
 
-    public AccountKitUIManager(boolean showTrialNeedRegistration) {
+    private final String buttonType;
+    private String firstLine;
+    private String secondLine;
+
+    public AccountKitUIManager(String buttonType, String firstLine, String secondLine) {
         super(R.style.MyAppLoginTheme);
 //        super(R.style.LoginTheme);
 //        super(R.style.AppLoginTheme);
-        this.showTrialNeedRegistration = showTrialNeedRegistration;
+        this.buttonType = buttonType;
+        this.firstLine = firstLine;
+        this.secondLine = secondLine;
     }
 
     private AccountKitUIManager(final Parcel source) {
         super(source);
-        showTrialNeedRegistration = source.readInt() == 1;
+        buttonType = source.readString();
+        firstLine = source.readString();
+        secondLine = source.readString();
     }
 
     @Override
     public Fragment getHeaderFragment(final LoginFlowState state) {
         switch (state) {
             case PHONE_NUMBER_INPUT:
-                return AccountKitHeaderFragment.newInstance(showTrialNeedRegistration);
+                return AccountKitHeaderFragment.newInstance(firstLine, secondLine);
             default:
                 return null;
         }
@@ -64,7 +71,7 @@ public class AccountKitUIManager extends BaseUIManager {
         switch (state) {
             case PHONE_NUMBER_INPUT:
             case EMAIL_INPUT:
-                if (showTrialNeedRegistration) {
+                if ("send".equalsIgnoreCase(buttonType)) {
                     return ButtonType.SEND;
                 } else {
                     return ButtonType.LOG_IN;
@@ -91,7 +98,9 @@ public class AccountKitUIManager extends BaseUIManager {
     @Override
     public void writeToParcel(final Parcel dest, final int flags) {
         super.writeToParcel(dest, flags);
-        dest.writeInt(showTrialNeedRegistration ? 1 : 0);
+        dest.writeString(buttonType);
+        dest.writeString(firstLine);
+        dest.writeString(secondLine);
     }
 
     public static final Creator<AccountKitUIManager> CREATOR

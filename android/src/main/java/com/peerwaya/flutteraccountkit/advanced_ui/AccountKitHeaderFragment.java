@@ -3,6 +3,7 @@ package com.peerwaya.flutteraccountkit.advanced_ui;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,15 +13,17 @@ import com.peerwaya.flutteraccountkit.R;
 
 public class AccountKitHeaderFragment extends Fragment {
 
-    private static final String SHOW_TRIAL_REQUIRES_SIGNUP = "SHOW_TRIAL_REQUIRES_SIGNUP";
+    private static final String KEY_FIRST_LINE = "KEY_FIRST_LINE";
+    private static final String KEY_SECOND_LINE = "KEY_SECOND_LINE";
 
     TextView text1;
     TextView text2;
 
-    public static AccountKitHeaderFragment newInstance(boolean showTrialNeedRegistration) {
+    public static AccountKitHeaderFragment newInstance(String firstLine, String secondLine) {
         AccountKitHeaderFragment frag = new AccountKitHeaderFragment();
         Bundle args = new Bundle();
-        args.putBoolean(SHOW_TRIAL_REQUIRES_SIGNUP, showTrialNeedRegistration);
+        args.putString(KEY_FIRST_LINE, firstLine);
+        args.putString(KEY_SECOND_LINE, secondLine);
         frag.setArguments(args);
         return frag;
     }
@@ -37,18 +40,30 @@ public class AccountKitHeaderFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         text1 = view.findViewById(R.id.text1);
         text2 = view.findViewById(R.id.text2);
-        boolean showTrial = getArguments().getBoolean(SHOW_TRIAL_REQUIRES_SIGNUP);
-
-        if (showTrial) {
+        String firstLine = getArguments().getString(KEY_FIRST_LINE);
+        String secondLine = getArguments().getString(KEY_SECOND_LINE);
+        if (!TextUtils.isEmpty(firstLine)) {
             text1.setVisibility(View.VISIBLE);
-            text1.setText(R.string.start_trial_please_signup_first);
-            text2.setVisibility(View.VISIBLE);
-            text2.setText(R.string.please_enter_your_phone_number);
+            text1.setText(firstLine);
         } else {
-            text1.setVisibility(View.VISIBLE);
-            text1.setText(R.string.please_enter_your_phone_number);
+            text1.setVisibility(View.GONE);
+        }
+        if (!TextUtils.isEmpty(secondLine)) {
+            text2.setVisibility(View.VISIBLE);
+            text2.setText(secondLine);
+        } else {
             text2.setVisibility(View.GONE);
         }
+//        if (showTrial) {
+//            text1.setVisibility(View.VISIBLE);
+//            text1.setText(R.string.start_trial_please_signup_first);
+//            text2.setVisibility(View.VISIBLE);
+//            text2.setText(R.string.please_enter_your_phone_number);
+//        } else {
+//            text1.setVisibility(View.VISIBLE);
+//            text1.setText(R.string.please_enter_your_phone_number);
+//            text2.setVisibility(View.GONE);
+//        }
     }
 
 }
