@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
+
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_account_kit/flutter_account_kit.dart';
 
@@ -34,9 +35,9 @@ class _MyAppState extends State<MyApp> {
           facebookNotificationsEnabled: true,
           responseType: ResponseType.token,
           titleType: TitleType.login,
-          showTrialNeedRegistrationNote: true
-      );
-//    config.showTrialNeedRegistrationNote = true;
+          buttonType: "login",
+          firstLine: "haha",
+          secondLine: "hthth");
       akt.configure(config);
 //      final theme = AccountKitTheme(
 //          headerBackgroundColor: Colors.green,

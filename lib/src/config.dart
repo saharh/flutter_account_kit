@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
+import 'account_kit_theme.dart';
+import 'countries.dart';
+import 'phone_number.dart';
 import 'response_type.dart';
 import 'title_type.dart';
-import 'countries.dart';
-import 'account_kit_theme.dart';
-import 'phone_number.dart';
 
 /// Assert all specified country codes are supported.
 void assertValidityOfCountryCodes(List<String> countryCodes, String fieldName) {
@@ -13,13 +12,9 @@ void assertValidityOfCountryCodes(List<String> countryCodes, String fieldName) {
   countryCodes.forEach((String countryCode) {
     final label = '"$fieldName": Invalid value found.';
 
-    assert(
-    countryCode == countryCode.toUpperCase(),
-    '$label Value should be in uppercase (${countryCode
-        .toUpperCase()}), "$countryCode" found.');
+    assert(countryCode == countryCode.toUpperCase(), '$label Value should be in uppercase (${countryCode.toUpperCase()}), "$countryCode" found.');
 
-    assert(supported_countries.contains(countryCode),
-    '$label Country code "$countryCode" in "$fieldName" is not supported');
+    assert(supported_countries.contains(countryCode), '$label Country code "$countryCode" in "$fieldName" is not supported');
   });
 }
 
@@ -52,22 +47,25 @@ class Config {
     throw new StateError('Invalid response type.');
   }
 
-  Config({
-    this.initialAuthState,
-    this.initialEmail,
-    this.initialPhoneNumber,
-    this.facebookNotificationsEnabled,
-    this.theme,
-    this.readPhoneStateEnabled,
-    this.receiveSMS,
-    ResponseType responseType = ResponseType.token,
-    TitleType titleType = TitleType.login,
-    this.showTrialNeedRegistrationNote,
-  })
+  Config(
+      {this.initialAuthState,
+      this.initialEmail,
+      this.initialPhoneNumber,
+      this.facebookNotificationsEnabled,
+      this.theme,
+      this.readPhoneStateEnabled,
+      this.receiveSMS,
+      ResponseType responseType = ResponseType.token,
+      TitleType titleType = TitleType.login,
+      this.buttonType = "login",
+      this.firstLine,
+      this.secondLine})
       : this._responseType = responseType,
         this._titleType = titleType;
 
-  bool showTrialNeedRegistrationNote;
+  String buttonType;
+  String firstLine;
+  String secondLine;
 
   /// The response type that determines whether to use access token or authorization code login flow
   /// based on the setting in the Facebook developer portal
@@ -188,7 +186,9 @@ class Config {
   /// storing it locally
   Map<String, dynamic> toMap() {
     Map<String, dynamic> map = <String, dynamic>{
-      'showTrialNeedRegistrationNote': showTrialNeedRegistrationNote,
+      'buttonType': buttonType,
+      'firstLine': firstLine,
+      'secondLine': secondLine,
       'initialAuthState': initialAuthState,
       'facebookNotificationsEnabled': facebookNotificationsEnabled,
       'readPhoneStateEnabled': readPhoneStateEnabled,
