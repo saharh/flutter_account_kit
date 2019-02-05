@@ -28,17 +28,30 @@ class _MyAppState extends State<MyApp> {
     bool initialized = false;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-//      accountKit = new FlutterAccountKit();
+//      akt = new FlutterAccountKit();
+//      Config config = Config(
+////          receiveSMS: true,
+//          readPhoneStateEnabled: true,
+//          facebookNotificationsEnabled: true,
+//          responseType: ResponseType.token,
+//          titleType: TitleType.login,
+//          buttonType: "login",
+//          firstLine: "First Line",
+//          secondLine: "Second Line");
+//      akt.configure(config);
       Config config = Config(
-          receiveSMS: true,
+          receiveSMS: false,
           readPhoneStateEnabled: true,
           facebookNotificationsEnabled: true,
           responseType: ResponseType.token,
-          titleType: TitleType.login,
           buttonType: "login",
-          firstLine: "haha",
-          secondLine: "hthth");
+          firstLine: "First Line",
+          secondLine: "Second Line",
+          titleType: TitleType.login);
       akt.configure(config);
+      LoginResult result = await akt.logInWithPhone();
+
+
 //      final theme = AccountKitTheme(
 //          headerBackgroundColor: Colors.green,
 //          buttonBackgroundColor: Colors.yellow,

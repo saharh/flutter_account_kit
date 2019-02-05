@@ -1,10 +1,7 @@
 package com.peerwaya.flutteraccountkit;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import androidx.core.content.ContextCompat;
 import android.util.Log;
 
 import com.facebook.accountkit.AccessToken;
@@ -211,22 +208,24 @@ public class FlutterAccountKitPlugin implements MethodCallHandler {
                     (Boolean) this.options.get("facebookNotificationsEnabled"));
 
             boolean readPhoneStateEnabled = (Boolean) this.options.get("readPhoneStateEnabled");
-            if (readPhoneStateEnabled && PackageManager.PERMISSION_DENIED == ContextCompat.checkSelfPermission(
-                    this.registrar.context(), Manifest.permission.READ_PHONE_STATE)) {
-                Log.w(LOG_TAG, "To allow reading phone number add READ_PHONE_STATE permission in your app's manifest");
-                configurationBuilder.setReadPhoneStateEnabled(false);
-            } else {
-                configurationBuilder.setReadPhoneStateEnabled(readPhoneStateEnabled);
-            }
+            configurationBuilder.setReadPhoneStateEnabled(readPhoneStateEnabled);
+//            if (readPhoneStateEnabled && PackageManager.PERMISSION_DENIED == ContextCompat.checkSelfPermission(
+//                    this.registrar.context(), Manifest.permission.READ_PHONE_STATE)) {
+//                Log.w(LOG_TAG, "To allow reading phone number add READ_PHONE_STATE permission in your app's manifest");
+//                configurationBuilder.setReadPhoneStateEnabled(false);
+//            } else {
+//            configurationBuilder.setReadPhoneStateEnabled(readPhoneStateEnabled);
+//            }
 
             boolean receiveSMS = (Boolean) this.options.get("receiveSMS");
-            if (receiveSMS && PackageManager.PERMISSION_DENIED == ContextCompat.checkSelfPermission(
-                    this.registrar.context(), Manifest.permission.RECEIVE_SMS)) {
-                Log.w(LOG_TAG, "To allow extracting code from SMS add RECEIVE_SMS permission in your app's manifest");
-                configurationBuilder.setReceiveSMS(false);
-            } else {
-                configurationBuilder.setReceiveSMS(receiveSMS);
-            }
+            configurationBuilder.setReceiveSMS(receiveSMS);
+//            if (receiveSMS && PackageManager.PERMISSION_DENIED == ContextCompat.checkSelfPermission(
+//                    this.registrar.context(), Manifest.permission.RECEIVE_SMS)) {
+//                Log.w(LOG_TAG, "To allow extracting code from SMS add RECEIVE_SMS permission in your app's manifest");
+//                configurationBuilder.setReceiveSMS(false);
+//            } else {
+//                configurationBuilder.setReceiveSMS(receiveSMS);
+//            }
 
             if (this.options.containsKey("countryBlacklist")) {
                 String[] blacklist = formatCountryList((List<String>) this.options.get("countryBlacklist"));
