@@ -51,6 +51,8 @@
     uiManager.firstLine = self.firstLine;
     uiManager.secondLine = self.secondLine;
     viewController.uiManager = uiManager;
+    viewController.enableSendToFacebook = true;
+    viewController.enableGetACall = true;
     
 //    viewController.uiManager = [[AKFSkinManager alloc] initWithSkinType:AKFSkinTypeContemporary primaryColor:[UIColor colorWithRed:0.28 green:0.62 blue:0.33 alpha:1.0]];
 }

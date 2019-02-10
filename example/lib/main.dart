@@ -82,8 +82,9 @@ class _MyAppState extends State<MyApp> {
           titleType: TitleType.login);
       akt.configure(config);
       LoginResult result = await akt.logInWithPhone();
-
-
+      print('Result: $result');
+      var accessToken = await akt.currentAccessToken;
+      print('accessToken: $accessToken');
 //      final theme = AccountKitTheme(
 //          headerBackgroundColor: Colors.green,
 //          buttonBackgroundColor: Colors.yellow,
