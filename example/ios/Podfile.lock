@@ -1,5 +1,5 @@
 PODS:
-  - AccountKit (4.31.0)
+  - AccountKit (4.35.0)
   - Flutter (1.0.0)
   - flutter_account_kit (0.0.1):
     - AccountKit
@@ -20,10 +20,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_account_kit/ios"
 
 SPEC CHECKSUMS:
-  AccountKit: f3e48047e6fb1c433dff37c61158fd32bbc482cf
+  AccountKit: 870ccaf5d33facda9408783e28fbe68c5211e069
   Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
-  flutter_account_kit: a770cb4dd69c5be7f816cbf769858c8d7d08d328
+  flutter_account_kit: bf873eb3a4da076db1ca7c99e42693d31c8abb60
 
-PODFILE CHECKSUM: 1e5af4103afd21ca5ead147d7b81d06f494f51a2
+PODFILE CHECKSUM: 348e15598a1c6ea25d3ed63919d5ffb9bd1c2ba6
 
 COCOAPODS: 1.6.0
