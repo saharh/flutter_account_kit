@@ -15,7 +15,7 @@ class LoginResultDelegate implements PluginRegistry.ActivityResultListener {
 
     void setPendingResult(String methodName, MethodChannel.Result result) {
         if (pendingResult != null) {
-            result.error(
+            sendError(
                     ERROR_LOGIN_IN_PROGRESS,
                     methodName + " called while another Facebook " +
                             "login operation was in progress.",
@@ -32,21 +32,28 @@ class LoginResultDelegate implements PluginRegistry.ActivityResultListener {
         if (requestCode == FlutterAccountKitPlugin.APP_REQUEST_CODE) {
             AccountKitLoginResult loginResult = data.getParcelableExtra(AccountKitLoginResult.RESULT_KEY);
             if (loginResult.getError() != null) {
-                finishWithResult(LoginResults.error(loginResult.getError()));
+                sendSuccess(LoginResults.error(loginResult.getError()));
             } else if (loginResult.wasCancelled()) {
-                finishWithResult(LoginResults.cancelledByUser);
+                sendSuccess(LoginResults.cancelledByUser);
             } else {
-                finishWithResult(LoginResults.success(loginResult));
+                sendSuccess(LoginResults.success(loginResult));
             }
             return true;
         }
         return false;
     }
 
-    private void finishWithResult(Object result) {
+    private void sendSuccess(Object o) {
         if (pendingResult != null) {
-            pendingResult.success(result);
-            pendingResult = null;
+            pendingResult.success(o);
         }
+        pendingResult = null;
+    }
+
+    private void sendError(String s, String s1, Object o) {
+        if (pendingResult != null) {
+            pendingResult.error(s, s1, o);
+        }
+        pendingResult = null;
     }
 }
