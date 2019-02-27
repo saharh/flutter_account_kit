@@ -16,6 +16,36 @@ class _MyAppState extends State<MyApp> {
   int _state = 0;
   bool _isInitialized = false;
 
+  static Color primary = Color(0xFF479e53);
+  static Color greyDark = Color(0xFF4D4D4D);
+  AccountKitTheme _akiOSTheme = AccountKitTheme(
+    // Background
+    backgroundColor: Color(0xFFEEEEEE),
+//    backgroundImage: 'background.png',
+    // Button
+    buttonBackgroundColor: primary,
+    buttonBorderColor: primary,
+    buttonTextColor: Colors.white,
+    // Button disabled
+    buttonDisabledBackgroundColor: Color(0x88315836),
+//    buttonDisabledBorderColor: Color(0x88315836),
+    buttonDisabledTextColor: Colors.white,
+    // Header
+    headerBackgroundColor: primary,
+//    headerButtonTextColor: Color.fromARGB(255, 0, 153, 0),
+    headerTextColor: Colors.white,
+    // Input
+//    inputBackgroundColor: Color.fromARGB(255, 0, 255, 0),
+    inputBorderColor: primary,
+    inputTextColor: greyDark,
+    // Others
+    iconColor: primary,
+    textColor: greyDark,
+    titleColor: greyDark,
+    // Header
+//    statusBarStyle: StatusBarStyle.lightStyle, // or StatusBarStyle.defaultStyle
+  );
+
   @override
   void initState() {
     super.initState();
@@ -44,14 +74,17 @@ class _MyAppState extends State<MyApp> {
           readPhoneStateEnabled: true,
           facebookNotificationsEnabled: true,
           responseType: ResponseType.token,
-          buttonType: "login",
-          firstLine: "First Line",
-          secondLine: "Second Line",
+          buttonType: "send",
+          firstLine: "Please enter your phone number. You will receive a SMS verification code.",
+//          firstLine: "In order to get this number, please signup first.",
+//          secondLine: "Please enter your phone number. You will receive a SMS verification code.",
+          theme: _akiOSTheme,
           titleType: TitleType.login);
       akt.configure(config);
       LoginResult result = await akt.logInWithPhone();
-
-
+      print('Result: $result');
+      var accessToken = await akt.currentAccessToken;
+      print('accessToken: $accessToken');
 //      final theme = AccountKitTheme(
 //          headerBackgroundColor: Colors.green,
 //          buttonBackgroundColor: Colors.yellow,

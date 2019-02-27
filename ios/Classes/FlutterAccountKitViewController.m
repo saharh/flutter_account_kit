@@ -7,6 +7,7 @@
 //
 
 #import "FlutterAccountKitPlugin.h"
+#import "advanced_ui/MyUIManager.h"
 
 @implementation FlutterAccountKitViewController
 {
@@ -44,7 +45,16 @@
         viewController.blacklistedCountryCodes = self.countryBlacklist;
     }
     viewController.defaultCountryCode = self.defaultCountry;
+    MyUIManager *uiManager = [[MyUIManager alloc] initWithTheme:self.theme];
+    uiManager.confirmButtonType = AKFButtonTypeConfirm;
+    uiManager.entryButtonType = [self.buttonType isEqualToString:@"send"] ? AKFButtonTypeSend : AKFButtonTypeLogIn;
+    uiManager.firstLine = self.firstLine;
+    uiManager.secondLine = self.secondLine;
+    viewController.uiManager = uiManager;
+    viewController.enableSendToFacebook = true;
+    viewController.enableGetACall = true;
     
+//    viewController.uiManager = [[AKFSkinManager alloc] initWithSkinType:AKFSkinTypeContemporary primaryColor:[UIColor colorWithRed:0.28 green:0.62 blue:0.33 alpha:1.0]];
 }
 
 - (void)loginWithPhone: (FlutterResult)result
@@ -56,7 +66,7 @@
     AKFPhoneNumber * prefillPhoneNumber = [[AKFPhoneNumber alloc] initWithCountryCode:prefillCountryCode phoneNumber:prefillPhone];
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        UIViewController<AKFViewController> *viewController = [_accountKit viewControllerForPhoneLoginWithPhoneNumber:prefillPhoneNumber state:inputState];
+        UIViewController<AKFViewController> *viewController = [self->_accountKit viewControllerForPhoneLoginWithPhoneNumber:prefillPhoneNumber state:inputState];
         [self _prepareLoginViewController:viewController];
         UIViewController *rootViewController = [UIApplication sharedApplication].delegate.window.rootViewController;
         [rootViewController presentViewController:viewController animated:YES completion:NULL];
@@ -70,7 +80,7 @@
     NSString *inputState = [[NSUUID UUID] UUIDString];
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        UIViewController<AKFViewController> *viewController = [_accountKit viewControllerForEmailLoginWithEmail:prefillEmail state:inputState];
+        UIViewController<AKFViewController> *viewController = [self->_accountKit viewControllerForEmailLoginWithEmail:prefillEmail state:inputState];
         [self _prepareLoginViewController:viewController];
         UIViewController *rootViewController = [UIApplication sharedApplication].delegate.window.rootViewController;
         [rootViewController presentViewController:viewController animated:YES completion:NULL];

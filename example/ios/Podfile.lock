@@ -21,9 +21,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AccountKit: f3e48047e6fb1c433dff37c61158fd32bbc482cf
-  Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
-  flutter_account_kit: e3eb9b78195f278c3d47426b6d93159b09b3e58a
+  Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
+  flutter_account_kit: a770cb4dd69c5be7f816cbf769858c8d7d08d328
 
 PODFILE CHECKSUM: 1e5af4103afd21ca5ead147d7b81d06f494f51a2
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0

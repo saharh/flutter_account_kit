@@ -61,6 +61,9 @@
         a.initialEmail = [self.options valueForKey:@"initialEmail"];
         a.initialPhoneCountryPrefix = [self.options valueForKey:@"initialPhoneCountryPrefix"];
         a.initialPhoneNumber = [self.options valueForKey:@"initialPhoneNumber"];
+        a.buttonType = [self.options valueForKey:@"buttonType"];
+        a.firstLine = [self.options valueForKey:@"firstLine"];
+        a.secondLine = [self.options valueForKey:@"secondLine"];
         if (type == AKFLoginTypePhone) {
             [a loginWithPhone: result];
         } else {
@@ -157,6 +160,10 @@
             }
         }
     }
+//    theme.buttonTranslucenStyle = AKFButtonTranslucentStyleDefault;
+//    theme.statusBarStyle = UIStatusBarStyleLightContent;
+    theme.inputStyle = AKFInputStyleUnderline;
+    
     return theme;
 }
 
