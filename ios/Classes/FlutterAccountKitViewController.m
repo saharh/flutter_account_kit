@@ -18,7 +18,7 @@
     NSString *_authorizationCode;
     BOOL *isUserLoggedIn;
     
-    FlutterResult _result;
+    FlutterResult _pendingResult;
 }
 
 - (instancetype)initWithAccountKit:(AKFAccountKit *)accountKit
@@ -59,7 +59,10 @@
 
 - (void)loginWithPhone: (FlutterResult)result
 {
-    _result = result;
+    if (_pendingResult != nil) {
+        [self sendError:@"Request in progress" message:nil details:nil];
+    }
+    _pendingResult = result;
     NSString *prefillPhone = self.initialPhoneNumber;
     NSString *prefillCountryCode = self.initialPhoneCountryPrefix;
     NSString *inputState = [[NSUUID UUID] UUIDString];
@@ -75,7 +78,9 @@
 
 - (void)loginWithEmail: (FlutterResult)result;
 {
-    _result = result;
+    if (_pendingResult != nil) {
+        [self sendError:@"Request in progress" message:nil details:nil];
+    }
     NSString *prefillEmail = self.initialEmail;
     NSString *inputState = [[NSUUID UUID] UUIDString];
     
@@ -91,24 +96,20 @@
 didCompleteLoginWithAccessToken:(id<AKFAccessToken>)accessToken
                  state:(NSString *)state
 {
-    if (_result) {
-        _result(@{
-                  @"status" : @"loggedIn",
-                  @"accessToken" : [FlutterAccountKitPlugin formatAccessToken: accessToken]
-                  });
-    }
+    [self sendSuccess:@{
+                        @"status" : @"loggedIn",
+                        @"accessToken" : [FlutterAccountKitPlugin formatAccessToken: accessToken]
+                        }];
 }
 
 - (void)viewController:(UIViewController<AKFViewController> *)viewController
 didCompleteLoginWithAuthorizationCode:(NSString *)code
                  state:(NSString *)state
 {
-    if (_result) {
-        _result(@{
-                  @"status" : @"loggedIn",
-                  @"code" : code,
-                  });
-    }
+    [self sendSuccess:@{
+                        @"status" : @"loggedIn",
+                        @"code" : code,
+                        }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -118,21 +119,32 @@ didCompleteLoginWithAuthorizationCode:(NSString *)code
 
 - (void)viewController:(UIViewController<AKFViewController> *)viewController didFailWithError:(NSError *)error
 {
-     if (_result) {
-         _result(@{
-                  @"status" : @"error",
-                  @"errorMessage" : [error description],
-                  });
-     }
+    [self sendSuccess:@{
+                        @"status" : @"error",
+                        @"errorMessage" : [error description],
+                        }];
 }
 
 - (void)viewControllerDidCancel:(UIViewController<AKFViewController> *)viewController
 {
-    if (_result) {
-        _result(@{
-                 @"status" : @"cancelledByUser",
-                 });
+    [self sendSuccess:@{
+                        @"status" : @"cancelledByUser",
+                        }];
+}
+
+- (void) sendError: (NSString *) code message: (NSString *) message details: (id) details {
+    if (_pendingResult != nil) {
+        FlutterError *err = [FlutterError errorWithCode:code message:message details:details];
+        _pendingResult(err);
     }
+    _pendingResult = nil;
+}
+
+- (void) sendSuccess: (id) result {
+    if (_pendingResult != nil) {
+        _pendingResult(result);
+    }
+    _pendingResult = nil;
 }
 
 @end
