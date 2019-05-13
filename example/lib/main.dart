@@ -70,7 +70,7 @@ class _MyAppState extends State<MyApp> {
 //          secondLine: "Second Line");
 //      akt.configure(config);
       Config config = Config(
-          receiveSMS: false,
+//          receiveSMS: false,
           readPhoneStateEnabled: true,
           facebookNotificationsEnabled: true,
           responseType: ResponseType.token,

@@ -54,7 +54,6 @@ class Config {
       this.facebookNotificationsEnabled,
       this.theme,
       this.readPhoneStateEnabled,
-      this.receiveSMS,
       ResponseType responseType = ResponseType.token,
       TitleType titleType = TitleType.login,
       this.buttonType = "login",
@@ -110,11 +109,6 @@ class Config {
   ///
   /// Android  only
   bool readPhoneStateEnabled;
-
-  /// If the RECEIVE_SMS permission is granted and this flag is true,
-  /// the app will automatically read the Account Kit confirmation SMS
-  /// and pre-fill the confirmation code in the SMS login flow
-  bool receiveSMS;
 
   /// Use this to specify a list of country codes to exclude during the SMS login flow
   ///
@@ -192,7 +186,6 @@ class Config {
       'initialAuthState': initialAuthState,
       'facebookNotificationsEnabled': facebookNotificationsEnabled,
       'readPhoneStateEnabled': readPhoneStateEnabled,
-      'receiveSMS': receiveSMS,
       'defaultCountry': defaultCountry,
       'responseType': _responseTypeAsString(),
       'titleType': _titleTypeAsString(),

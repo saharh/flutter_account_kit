@@ -58,7 +58,7 @@ void main() {
 
     final kValidConfig = Config()
       ..facebookNotificationsEnabled = true
-      ..receiveSMS = true
+//      ..receiveSMS = true
       ..readPhoneStateEnabled = true
       ..initialPhoneNumber = kPhoneNumber
       ..defaultCountry = "NG"
@@ -67,7 +67,7 @@ void main() {
     final kValidConfigMap = {
       'facebookNotificationsEnabled': true,
       'readPhoneStateEnabled': true,
-      'receiveSMS': true,
+//      'receiveSMS': true,
       'defaultCountry': 'NG',
       'responseType': 'token',
       'titleType': 'login',
